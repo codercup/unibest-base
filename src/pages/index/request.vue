@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts" setup>
-import { getFooAPI, postFooAPI, IFooItem } from '@/service/foo'
+import { getFooAPI, postFooAPI, IFooItem } from '@/service/index/foo'
 
 const recommendUrl = ref('http://laf.run/signup?code=ohaOgIX')
 
@@ -44,6 +44,7 @@ onLoad(() => {
   getFoo()
   postFoo()
 })
+
 const originalData = ref<IResData<IFooItem>>()
 const data = ref<IFooItem>()
 const getFoo = async () => {
@@ -64,3 +65,4 @@ const reset = () => {
   originalData.value = undefined
 }
 </script>
+@/service/index/foo@/service/index/foo

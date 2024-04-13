@@ -18,7 +18,6 @@ import UnoCSS from 'unocss/vite'
 // import autoprefixer from 'autoprefixer'
 // @see https://github.com/jpkleemans/vite-svg-loader
 import svgLoader from 'vite-svg-loader'
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 // @see https://github.com/vbenjs/vite-plugin-vue-setup-extend
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 // @see https://github.com/vbenjs/vite-plugin-svg-icons
@@ -26,7 +25,6 @@ import AutoImport from 'unplugin-auto-import/vite'
 // import viteCompression from 'vite-plugin-compression'
 import ViteRestart from 'vite-plugin-restart'
 import { visualizer } from 'rollup-plugin-visualizer'
-// import imagemin from './vite-plugins/imagemin'
 
 console.log('process.platform -> ', process.platform)
 
@@ -71,18 +69,12 @@ export default ({ command, mode }) => {
       svgLoader({
         defaultImport: 'url', // or 'raw'
       }),
-      createSvgIconsPlugin({
-        // 指定要缓存的文件夹
-        iconDirs: [path.resolve(process.cwd(), 'src/assets/svg')],
-        // 指定symbolId格式
-        symbolId: 'icon-[dir]-[name]',
-      }),
       vueSetupExtend(),
       AutoImport({
         imports: ['vue', 'uni-app'],
         dts: 'src/auto-import.d.ts',
         // dirs: ['src/hooks'], // 自动导入 hooks
-        eslintrc: { enabled: false },
+        eslintrc: { enabled: true },
         vueTemplate: true, // default false
       }),
 
@@ -106,9 +98,6 @@ export default ({ command, mode }) => {
           gzipSize: true,
           brotliSize: true,
         }),
-      // 这个图片压缩插件比较耗时，希望仅在生产环境使用
-      // TODO: 缓存每次压缩过的图片，已经压缩过的不再压缩
-      // imagemin(mode === 'production'),
     ],
     define: {
       __UNI_PLATFORM__: JSON.stringify(process.env.UNI_PLATFORM),
