@@ -22,6 +22,10 @@
     <view class="mt-8 text-center">
       <text class="text-green-400">当前模板分支：base</text>
     </view>
+    <view class="text-center text-xl mt-8">
+      鸽友们好，我是
+      <text class="text-red-500">菲鸽</text>
+    </view>
   </view>
 </template>
 

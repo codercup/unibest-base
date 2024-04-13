@@ -11,21 +11,16 @@
     class="bg-white overflow-hidden pt-2 px-4"
     :style="{ marginTop: safeAreaInsets?.top + 'px' }"
   >
-    <view class="text-center text-3xl mt-4">关于页面</view>
-    <view class="text-center text-3xl mt-8">
-      鸽友们好，我是
-      <text class="text-red-500">菲鸽</text>
-    </view>
-    <view class="text-center mt-8">
-      <wd-button type="primary" @click="gotoPage('request')">去请求页</wd-button>
-    </view>
-
-    <view class="text-center py-4">
+    <view class="text-center text-2xl mt-4">关于页面</view>
+    <view class="text-center mt-4">
       当前平台是：
       <text class="text-red-500">{{ PLATFORM.platform }}</text>
     </view>
-    <view class="text-center desc mt-10">设计稿样式编写：</view>
-    <view class="text-center desc">设计稿是750px，css里面全部写rpx 即可</view>
+    <view class="text-center mt-4">进入请求页</view>
+    <view class="text-center mt-4">
+      <wd-button type="primary" @click="gotoPage('request')">传统请求</wd-button>
+      <wd-button type="primary" @click="gotoPage('request-av')" class="ml-2">Alova 请求</wd-button>
+    </view>
   </view>
 </template>
 
