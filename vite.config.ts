@@ -38,7 +38,7 @@ export default ({ command, mode }) => {
   console.log('UNI_PLATFORM -> ', UNI_PLATFORM) // 得到 mp-weixin, h5, app 等
 
   const env = loadEnv(mode, path.resolve(process.cwd(), 'env'))
-  const { VITE_APP_PORT, VITE_SERVER_BASEURL, VITE_DELETE_CONSOLE } = env
+  const { VITE_APP_PORT, VITE_SERVER_BASEURL, VITE_DELETE_CONSOLE, VITE_SHOW_SOURCEMAP } = env
   console.log('环境变量 env -> ', env)
 
   return defineConfig({
@@ -125,6 +125,9 @@ export default ({ command, mode }) => {
       },
     },
     build: {
+      // 方便非h5端调试
+      sourcemap: VITE_SHOW_SOURCEMAP === 'true', // 默认是false
+      target: 'es6',
       minify: 'terser',
       terserOptions: {
         compress: {
