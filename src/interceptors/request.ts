@@ -4,6 +4,8 @@ import { useUserStore } from '@/store'
 
 export type CustomRequestOptions = UniApp.RequestOptions & {
   query?: Record<string, any>
+  /** 出错时是否弹出错误提示 */
+  showErrorToast?: boolean
 } & IUniUploadFileOptions // 添加uni.uploadFile参数类型
 
 // 拦截器配置
