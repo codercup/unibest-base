@@ -65,4 +65,3 @@ const reset = () => {
   originalData.value = undefined
 }
 </script>
-@/service/index/foo@/service/index/foo
