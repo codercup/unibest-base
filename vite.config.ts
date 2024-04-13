@@ -32,15 +32,14 @@ export default ({ command, mode }) => {
   // pnpm build:mp-weixin 时得到 => build production
   // pnpm dev:app 时得到 => build development (注意区别，command为build)
   // pnpm build:app 时得到 => build production
-  // dev 和 build 命令可以分别使用.env.development和.env.production的环境变量
+  // dev 和 build 命令可以分别使用 .env.development 和 .env.production 的环境变量
 
-  // process.cwd(): 获取当前文件的目录跟地址
-  // loadEnv(): 返回当前环境env文件中额外定义的变量
+  const { UNI_PLATFORM } = process.env
+  console.log('UNI_PLATFORM -> ', UNI_PLATFORM) // 得到 mp-weixin, h5, app 等
+
   const env = loadEnv(mode, path.resolve(process.cwd(), 'env'))
-
   const { VITE_APP_PORT, VITE_SERVER_BASEURL, VITE_DELETE_CONSOLE } = env
-  console.log('env -> ', env)
-  console.log('UNI_PLATFORM: ', process.env.UNI_PLATFORM) // 得到 mp-weixin, h5, app 等
+  console.log('环境变量 env -> ', env)
 
   return defineConfig({
     envDir: './env', // 自定义env目录
@@ -77,14 +76,14 @@ export default ({ command, mode }) => {
         restart: ['vite.config.js'],
       }),
       // h5环境增加编译时间
-      process.env.UNI_PLATFORM === 'h5' && {
+      UNI_PLATFORM === 'h5' && {
         name: 'html-transform',
         transformIndexHtml(html) {
           return html.replace('%BUILD_DATE%', dayjs().format('YYYY-MM-DD HH:mm:ss'))
         },
       },
       // 打包分析插件，h5 + 生产环境才弹出
-      process.env.UNI_PLATFORM === 'h5' &&
+      UNI_PLATFORM === 'h5' &&
         mode === 'production' &&
         visualizer({
           filename: './node_modules/.cache/visualizer/stats.html',
@@ -94,7 +93,7 @@ export default ({ command, mode }) => {
         }),
     ],
     define: {
-      __UNI_PLATFORM__: JSON.stringify(process.env.UNI_PLATFORM),
+      __UNI_PLATFORM__: JSON.stringify(UNI_PLATFORM),
     },
     css: {
       postcss: {
