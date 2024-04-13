@@ -13,18 +13,12 @@ import UniPlatform from '@uni-helper/vite-plugin-uni-platform'
 import UniManifest from '@uni-helper/vite-plugin-uni-manifest'
 // @see https://unocss.dev/
 import UnoCSS from 'unocss/vite'
-// import autoprefixer from 'autoprefixer'
 // @see https://github.com/jpkleemans/vite-svg-loader
 import svgLoader from 'vite-svg-loader'
-// @see https://github.com/vbenjs/vite-plugin-vue-setup-extend
-import vueSetupExtend from 'vite-plugin-vue-setup-extend'
-// @see https://github.com/vbenjs/vite-plugin-svg-icons
 import AutoImport from 'unplugin-auto-import/vite'
-// import viteCompression from 'vite-plugin-compression'
-import ViteRestart from 'vite-plugin-restart'
+import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 import { visualizer } from 'rollup-plugin-visualizer'
-
-console.log('process.platform -> ', process.platform)
+import ViteRestart from 'vite-plugin-restart'
 
 // https://vitejs.dev/config/
 export default ({ command, mode }) => {
@@ -43,7 +37,7 @@ export default ({ command, mode }) => {
 
   const { VITE_APP_PORT, VITE_SERVER_BASEURL, VITE_DELETE_CONSOLE } = env
   console.log('env -> ', env)
-  console.log('process.env.UNI_PLATFORM: ', process.env.UNI_PLATFORM) // 得到 mp-weixin, h5, app 等
+  console.log('UNI_PLATFORM: ', process.env.UNI_PLATFORM) // 得到 mp-weixin, h5, app 等
 
   return defineConfig({
     envDir: './env', // 自定义env目录
@@ -66,7 +60,6 @@ export default ({ command, mode }) => {
       svgLoader({
         defaultImport: 'url', // or 'raw'
       }),
-      vueSetupExtend(),
       AutoImport({
         imports: ['vue', 'uni-app'],
         dts: 'src/auto-import.d.ts',
@@ -75,7 +68,7 @@ export default ({ command, mode }) => {
         vueTemplate: true, // default false
       }),
 
-      // viteCompression(),
+      vueSetupExtend(),
       ViteRestart({
         // 通过这个插件，在修改vite.config.js文件则不需要重新运行也生效配置
         restart: ['vite.config.js'],
