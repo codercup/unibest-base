@@ -22,7 +22,7 @@ export const http = <T>(options: CustomRequestOptions) => {
           reject(res)
         } else {
           // 其他错误 -> 根据后端错误信息轻提示
-          options.showErrorToast &&
+          !options.hideErrorToast &&
             uni.showToast({
               icon: 'none',
               title: (res.data as IResData<T>).msg || '请求错误',
