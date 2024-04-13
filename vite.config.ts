@@ -11,8 +11,6 @@ import UniLayouts from '@uni-helper/vite-plugin-uni-layouts'
 import UniPlatform from '@uni-helper/vite-plugin-uni-platform'
 // @see https://github.com/uni-helper/vite-plugin-uni-manifest
 import UniManifest from '@uni-helper/vite-plugin-uni-manifest'
-// @see https://github.com/uni-helper/vite-plugin-uni-components
-import Components from '@uni-helper/vite-plugin-uni-components'
 // @see https://unocss.dev/
 import UnoCSS from 'unocss/vite'
 // import autoprefixer from 'autoprefixer'
@@ -61,8 +59,6 @@ export default ({ command, mode }) => {
       UniLayouts(),
       UniPlatform(),
       UniManifest(),
-      // 自动安装 src/components 里面的组件为全局组件，非全局组件不要放到 src/components
-      Components(),
       // UniXXX 需要在 Uni 之前引入
       Uni(),
       UnoCSS(),
