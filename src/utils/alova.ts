@@ -14,6 +14,7 @@ export const alovaInst = createAlova({
       method.config.headers.token = `Bearer ${token}`
     }
   },
+  // TODO: 如下编码是否合理，是否优雅
   // 请求成功的拦截器
   async responded(res, method) {
     // console.log('请求成功的拦截器 ->', res, method)

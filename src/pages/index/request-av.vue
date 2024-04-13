@@ -12,6 +12,7 @@
     loading: {{ loading }}
     <view v-if="loading">加载中...</view>
     <block v-else>
+      <!-- TODO: 如何解决类型报错提示 -->
       <view class="my-6">请求数据为：{{ data?.data }}</view>
       <view>完整数据为：{{ data }}</view>
     </block>
@@ -30,6 +31,7 @@ const list = () =>
     sslVerify: true,
   })
 
+// TODO: 如何编写返回类型
 const { loading, data } = useRequest(list, { initialData: {} })
 console.log(loading.value)
 </script>
