@@ -9,7 +9,8 @@ export function createApp() {
   const app = createSSRApp(App)
   app.use(store)
   app.use(routeInterceptor)
-  app.use(requestInterceptor)
+  // 使用 alova 之后无需下面的 requestInterceptor
+  // app.use(requestInterceptor)
   return {
     app,
   }
