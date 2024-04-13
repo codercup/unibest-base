@@ -87,8 +87,9 @@ export default ({ command, mode }) => {
           return html.replace('%BUILD_DATE%', dayjs().format('YYYY-MM-DD HH:mm:ss'))
         },
       },
-      // 打包分析插件
-      mode === 'production' &&
+      // 打包分析插件，h5 + 生产环境才弹出
+      process.env.UNI_PLATFORM === 'h5' &&
+        mode === 'production' &&
         visualizer({
           filename: './node_modules/.cache/visualizer/stats.html',
           open: true,
