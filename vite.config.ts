@@ -42,9 +42,10 @@ export default ({ command, mode }) => {
   // process.cwd(): 获取当前文件的目录跟地址
   // loadEnv(): 返回当前环境env文件中额外定义的变量
   const env = loadEnv(mode, path.resolve(process.cwd(), 'env'))
+
+  const { VITE_APP_PORT, VITE_SERVER_BASEURL, VITE_DELETE_CONSOLE } = env
   console.log('env -> ', env)
   console.log('process.env.UNI_PLATFORM: ', process.env.UNI_PLATFORM) // 得到 mp-weixin, h5, app 等
-  console.log('isH5: ', process.env.UNI_PLATFORM === 'h5') // 得到 mp-weixin, h5, app 等
 
   return defineConfig({
     envDir: './env', // 自定义env目录
@@ -122,23 +123,23 @@ export default ({ command, mode }) => {
     server: {
       host: '0.0.0.0',
       hmr: true,
-      port: Number.parseInt(env.VITE_APP_PORT, 10),
+      port: Number.parseInt(VITE_APP_PORT, 10),
+      proxy: {
+        '/api': {
+          target: VITE_SERVER_BASEURL,
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, ''),
+        },
+      },
     },
     build: {
       minify: 'terser',
       terserOptions: {
         compress: {
-          drop_console: env.VITE_DELETE_CONSOLE === 'true',
-          drop_debugger: env.VITE_DELETE_CONSOLE === 'true',
+          drop_console: VITE_DELETE_CONSOLE === 'true',
+          drop_debugger: true,
         },
       },
-      // 解决windows系统对微信小程序自动关闭服务的问题
-      watch:
-        process.platform === 'win32' // 检测是否为 windows 系统
-          ? {
-              exclude: ['node_modules/**', '/__uno.css'],
-            }
-          : null,
     },
   })
 }

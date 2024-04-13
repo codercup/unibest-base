@@ -6,7 +6,7 @@ export { IFooItem }
 /** get 请求 */
 export const getFooAPI = (name: string) => {
   return http<IFooItem>({
-    url: `/foo`,
+    url: `/api/foo`,
     method: 'GET',
     query: { name },
   })
@@ -15,7 +15,7 @@ export const getFooAPI = (name: string) => {
 /** get 请求 */
 export const postFooAPI = (name: string) => {
   return http<IFooItem>({
-    url: `/foo`,
+    url: `/api/foo`,
     method: 'POST',
     query: { name }, // post 请求也支持 query
     data: { name },
