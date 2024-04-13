@@ -30,6 +30,9 @@ export default ({ command, mode }) => {
   // pnpm build:h5 时得到 => build production
   // pnpm dev:mp-weixin 时得到 => build development (注意区别，command为build)
   // pnpm build:mp-weixin 时得到 => build production
+  // pnpm dev:app 时得到 => build development (注意区别，command为build)
+  // pnpm build:app 时得到 => build production
+  // dev 和 build 命令可以分别使用.env.development和.env.production的环境变量
 
   // process.cwd(): 获取当前文件的目录跟地址
   // loadEnv(): 返回当前环境env文件中额外定义的变量
