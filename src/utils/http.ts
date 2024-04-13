@@ -21,7 +21,7 @@ export const http = <T>(options: CustomRequestOptions) => {
           // uni.navigateTo({ url: '/pages/login/login' })
           reject(res)
         } else {
-          // 其他错误 -> 根据后端错误信息轻提示
+          // 其他错误 -> 根据后端错误信息toast提示，并可控制
           !options.hideErrorToast &&
             uni.showToast({
               icon: 'none',
