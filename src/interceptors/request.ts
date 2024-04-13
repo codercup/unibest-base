@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import qs from 'qs'
 import { useUserStore } from '@/store'
+import { platform } from '@/utils/platform'
 
 export type CustomRequestOptions = UniApp.RequestOptions & {
   query?: Record<string, any>
@@ -26,7 +27,7 @@ const httpInterceptor = {
     options.timeout = 10000 // 10s
     // 2. （可选）添加小程序端请求头标识
     options.header = {
-      platform: 'mp-weixin', // 可选值与 uniapp 定义的平台一致，告诉后台来源
+      platform, // 可选，与 uniapp 定义的平台一致，告诉后台来源
       ...options.header,
     }
     // 3. 添加 token 请求头标识
