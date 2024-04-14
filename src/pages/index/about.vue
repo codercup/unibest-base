@@ -19,6 +19,7 @@
     <view class="text-center mt-8">
       <wd-button type="primary" @click="gotoPage('request')">去请求页</wd-button>
       <wd-button type="primary" @click="gotoPage('request2')" class="ml-4">去请求页2</wd-button>
+      <wd-button type="primary" @click="gotoPage('request3')" class="ml-4">去请求页3</wd-button>
     </view>
 
     <view class="text-center py-4">
