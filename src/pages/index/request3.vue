@@ -21,7 +21,7 @@
 <script lang="ts" setup>
 import { getFooAPI, IFooItem } from '@/service/index/foo'
 
-const { loading, data, run } = useRequest<IFooItem>(() => getFooAPI('菲鸽'))
+const { loading, data, run } = useRequest<IFooItem>(() => getFooAPI('菲鸽'), { immediate: true })
 
 const getFoo = () => run()
 const reset = () => {

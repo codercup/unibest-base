@@ -1,18 +1,21 @@
-type IUseRequestOptions = {
+type IUseRequestOptions<T> = {
+  /** 是否立即执行，如果是则在onLoad执行 */
   immediate?: boolean
+  /** 初始化数据 */
+  initialData?: T
 }
+
 /**
- * uni普通请求
- * @param func 外面传进来的请求函数
- * @param options 传递的参数
- * @returns {data: globalThis.Ref<T>;
-    error: globalThis.Ref<boolean>;
-    loading: globalThis.Ref<boolean>;
-    run: () => Promise<void>;}
+ * useRequest是一个定制化的请求钩子，用于处理异步请求和响应。
+ * @param func 一个执行异步请求的函数，返回一个包含响应数据的Promise。
+ * @param options 包含请求选项的对象 {immediate, initialData}。
+ * @param options.immediate 是否立即执行请求，默认为true。
+ * @param options.initialData 初始化数据，默认为undefined。
+ * @returns 返回一个对象{loading, error, data, run}，包含请求的加载状态、错误信息、响应数据和手动触发请求的函数。
  */
 export default function useRequest<T>(
   func: () => Promise<IResData<T>>,
-  options: IUseRequestOptions = { immediate: true },
+  options: IUseRequestOptions<T> = { immediate: true },
 ) {
   const loading = ref(false)
   const error = ref(false)
@@ -35,5 +38,5 @@ export default function useRequest<T>(
   onLoad(() => {
     options.immediate && run()
   })
-  return { data, error, loading, run }
+  return { loading, error, data, run }
 }
