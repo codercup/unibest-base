@@ -66,7 +66,7 @@ export default ({ command, mode }) => {
       AutoImport({
         imports: ['vue', 'uni-app'],
         dts: 'src/types/auto-import.d.ts',
-        // dirs: ['src/hooks'], // 自动导入 hooks
+        dirs: ['src/hooks'], // 自动导入 hooks
         eslintrc: { enabled: true },
         vueTemplate: true, // default false
       }),
