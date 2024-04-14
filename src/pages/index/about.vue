@@ -17,12 +17,9 @@
       <text class="text-red-500">菲鸽</text>
     </view>
     <view class="text-center mt-8">
-      <wd-button type="primary" @click="gotoPage('request')" size="small">去请求页</wd-button>
-      <wd-button type="primary" @click="gotoPage('request2')" size="small" class="ml-1">
-        去请求页2
-      </wd-button>
-      <wd-button type="primary" @click="gotoPage('request3')" size="small" class="ml-1">
-        去请求页3
+      <wd-button type="primary" @click="gotoPage('request')">去请求页</wd-button>
+      <wd-button type="primary" @click="gotoPage('request2')" class="ml-2">
+        去请求页2 (请求状态一体化)
       </wd-button>
     </view>
   </view>

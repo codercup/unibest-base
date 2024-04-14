@@ -21,25 +21,10 @@
 <script lang="ts" setup>
 import { getFooAPI, IFooItem } from '@/service/index/foo'
 
-const loading = ref(false)
-const data = ref<IFooItem>()
-const getFoo = async () => {
-  loading.value = true
-  getFooAPI('菲鸽')
-    .then((res) => {
-      data.value = res.data
-      loading.value = false
-    })
-    .catch(() => {
-      loading.value = false
-    })
-}
+const { loading, data, run } = useRequest<IFooItem>(() => getFooAPI('菲鸽'), { immediate: true })
 
+const getFoo = () => run()
 const reset = () => {
   data.value = undefined
 }
-
-onLoad(() => {
-  getFoo()
-})
 </script>
