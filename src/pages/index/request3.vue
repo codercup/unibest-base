@@ -14,7 +14,6 @@
     <view class="text-xl">请求数据如下</view>
     <view v-if="loading" class="text-blue h-10">加载中...</view>
     <view v-else class="text-green h-10">{{ JSON.stringify(data) }}</view>
-    {{ loading }}
     <button class="my-6" type="warn" @click="reset">一键清空数据</button>
   </view>
 </template>
@@ -22,14 +21,8 @@
 <script lang="ts" setup>
 import { getFooAPI, IFooItem } from '@/service/index/foo'
 
-const { loading, data, run } = useRequest<IFooItem>(() => getFooAPI('菲鸽'), { immediate: true })
+const { loading, data, run } = useRequest<IFooItem>(() => getFooAPI('菲鸽'))
 
-watch(
-  () => loading.value,
-  (val) => {
-    console.log(val)
-  },
-)
 const getFoo = () => run()
 const reset = () => {
   data.value = undefined
