@@ -4,7 +4,8 @@ module.exports = {
   root: true,
   extends: [
     'stylelint-config-standard',
-    'stylelint-config-standard-scss', // tips: 本插件也可以替换成 stylelint-config-recommended-scss
+    // stylelint-config-standard-scss 替换成了更宽松的 stylelint-config-recommended-scss
+    'stylelint-config-recommended-scss',
     'stylelint-config-recommended-vue/scss',
     'stylelint-config-html/vue',
     'stylelint-config-recess-order',
@@ -50,5 +51,6 @@ module.exports = {
     'comment-no-empty': null,
     'no-duplicate-selectors': null,
     'scss/comment-no-empty': null,
+    'selector-class-pattern': null,
   },
 }
