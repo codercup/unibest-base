@@ -28,6 +28,7 @@ const httpInterceptor = {
     // 非 http 开头需拼接地址
     if (!options.url.startsWith('http')) {
       options.url = baseUrl + options.url
+      // TIPS: 如果需要对接多个后端服务，也可以在这里处理，拼接成所需要的地址
     }
     // 1. 请求超时
     options.timeout = 10000 // 10s
