@@ -9,6 +9,9 @@ export type CustomRequestOptions = UniApp.RequestOptions & {
   hideErrorToast?: boolean
 } & IUniUploadFileOptions // 添加uni.uploadFile参数类型
 
+// 请求基准地址
+const baseUrl = import.meta.env.VITE_SERVER_BASEURL
+
 // 拦截器配置
 const httpInterceptor = {
   // 拦截前触发
@@ -22,7 +25,10 @@ const httpInterceptor = {
         options.url += `?${queryStr}`
       }
     }
-
+    // 非 http 开头需拼接地址
+    if (!options.url.startsWith('http')) {
+      options.url = baseUrl + options.url
+    }
     // 1. 请求超时
     options.timeout = 10000 // 10s
     // 2. （可选）添加小程序端请求头标识
