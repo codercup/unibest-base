@@ -22,6 +22,7 @@
     "pnpm": ">=7.30"
   },
   "scripts": {
+    "upgrade": "npx @dcloudio/uvm@latest",
     "dev:app": "uni -p app",
     "dev:app-android": "uni -p app-android",
     "dev:app-ios": "uni -p app-ios",
