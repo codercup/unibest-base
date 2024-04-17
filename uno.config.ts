@@ -8,12 +8,7 @@ import {
   transformerVariantGroup,
 } from 'unocss'
 
-import {
-  presetApplet,
-  presetRemRpx,
-  transformerApplet,
-  transformerAttributify,
-} from 'unocss-applet'
+import { presetApplet, presetRemRpx, transformerAttributify } from 'unocss-applet'
 
 // @see https://unocss.dev/presets/legacy-compat
 import presetLegacyCompat from '@unocss/preset-legacy-compat'
@@ -71,7 +66,6 @@ export default defineConfig({
       prefixedOnly: true,
       prefix: 'fg',
     }),
-    transformerApplet(),
   ],
   rules: [
     [

@@ -16,7 +16,7 @@
       鸽友们好，我是
       <text class="text-red-500">菲鸽</text>
     </view>
-    <view class="text-center mt-8">
+    <view class="text-center mt-8 text-#fff">
       <wd-button type="primary" @click="gotoPage('request')">去请求页</wd-button>
       <wd-button type="primary" @click="gotoPage('request2')" class="ml-2">
         去请求页2 (请求状态一体化)
