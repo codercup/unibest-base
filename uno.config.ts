@@ -31,8 +31,8 @@ if (!isH5) {
 }
 export default defineConfig({
   presets: [
-    presetApplet({ enable: !isH5 }),
     ...presets,
+    presetApplet(),
     // 支持图标，需要搭配图标库，eg: @iconify-json/carbon, 使用 `<button class="i-carbon-sun dark:i-carbon-moon" />`
     presetIcons({
       scale: 1.2,
